@@ -3,6 +3,8 @@ import { client, urlFor } from "@/lib/sanity"
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
+export const revalidate = 30;
+
 async function getData(slug: string) {
     const query = `
         *[_type == "blog" && slug.current == "${slug}"] {
@@ -42,7 +44,7 @@ export default async function BlogArticle({ params }: { params: { slug: string }
             <div className="mt-16 prose prose-blue prose-xl dark:prose-invert prose-li:marker:text-primary">
                 <PortableText value={data.content} />
             </div>
-            
+
         </div>
     )
 }
